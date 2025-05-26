@@ -34,7 +34,8 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:hesam27@localhost:5432/blog'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -222,6 +223,3 @@ def delete_post(post_id):
     db.session.commit()
     return redirect(url_for('get_all_posts'))
 
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
